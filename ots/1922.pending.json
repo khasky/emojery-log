@@ -1,0 +1,15 @@
+{
+  "tree_size": "1922",
+  "digest_hex": "27aa3c71adff26b04ed6b6a5e23f7892f656b105b35282ff96032796ffc6f200",
+  "calendars": [
+    {
+      "url": "https://alice.btc.calendar.opentimestamps.org",
+      "response_b64": "8AhZno42z48R0gjwENVCuY9PVhTdA5EeBCnjQo0I8CCJA7tUsdorGVTPLdSn57/v7izONgWABLjeWEH+5lG65gjwIJJnCbBIR59IK77iDSVowCQ13ihBWIY3S/wruV+xJLNhCPEEamV4UvAIQYL46RveD04Ag9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZw=="
+    },
+    {
+      "url": "https://bob.btc.calendar.opentimestamps.org",
+      "response_b64": "8AhKl7QmRV8MDQjwENjW+dtFufgv6qB+3dmfkuAI8CA+CQYyUfQPFzV5TTrLV19k6WQ0eNXuc3lGrDu/xu+pNgjwIDDlqLKxAOJHsaMXwdaahM1rOW4TlTltPpM3KKL65yMUCPEEamV4U/AI6zXH0iIQI8QAg9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmc="
+    }
+  ],
+  "submitted_at": 1785034835805
+}
