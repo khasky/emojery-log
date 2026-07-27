@@ -107,11 +107,13 @@ present in the shards. The verifier checks that endpoint against the actual
 
 **`swh/` — Software Heritage archival records**
 
-- `latest.json` — the coordinate of the most recent Software Heritage save
-  request for this repo: `{origin, git_commit, swhid, revision_url,
+- `latest.json` — the coordinate of the most recent daily Software Heritage save
+  attempt for this repo: `{origin, git_commit, swhid, revision_url,
   save_request_id, save_request_status, save_task_status, snapshot_swhid,
-  requested_ts}`. **Overwritten each daily save;** its git history here is the
-  append-only record of every save.
+  requested_ts}`. **Rewritten once per day** whether or not that day's save
+  request was accepted (the `save_request_*` / `snapshot_swhid` fields are null
+  when it was throttled, but `git_commit` / `swhid` always pin the day's head);
+  its git history here is the append-only record of every daily save attempt.
 
 Because this is a Git origin, the archived commit's SWHID is
 `swh:1:rev:<git_commit>` — SWHIDs are `sha1_git`, so the SWH revision hash *is*
