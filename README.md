@@ -188,25 +188,28 @@ third-party mirrors preserve the real history). Don't edit them by hand.
 
 ## Verify
 
-### Fast check
-
-Use the open-source verifier. The published Web Reactions Ed25519 key is pinned
-in the verifier, so `--pubkey` is optional for the main deployment.
+Set the coordinates of the deployment you are checking — every command below
+reuses them:
 
 ```bash
-npx web-reactions-verify \
-  --api https://api.webreactions.app \
-  --repo https://raw.githubusercontent.com/khasky/web-reactions-log/main
+API=https://api.webreactions.app
+REPO=https://raw.githubusercontent.com/khasky/web-reactions-log/main
+KEY=              # the production key is pinned in the verifier
+```
+
+### Fast check
+
+Use the open-source verifier:
+
+```bash
+npx web-reactions-verify --api $API --repo $REPO $KEY
 ```
 
 To also compare one live target's `/reactions/count` response to the recomputed
 fold, add `--target site/id`:
 
 ```bash
-npx web-reactions-verify \
-  --api https://api.webreactions.app \
-  --repo https://raw.githubusercontent.com/khasky/web-reactions-log/main \
-  --target github/1
+npx web-reactions-verify --api $API --repo $REPO $KEY --target github/1
 ```
 
 ### Fully offline audit
@@ -217,8 +220,7 @@ under test comes from `checkpoints/latest.json` and every entry from the
 `entries/` shards:
 
 ```bash
-npx web-reactions-verify --entries repo \
-  --repo https://raw.githubusercontent.com/khasky/web-reactions-log/main
+npx web-reactions-verify --entries repo --repo $REPO $KEY
 ```
 
 ### Bitcoin anchor check
@@ -228,10 +230,7 @@ Bitcoin block. It is slower and can only pass after an OTS proof has matured, so
 it is separate from the fast check:
 
 ```bash
-npx web-reactions-verify \
-  --api https://api.webreactions.app \
-  --repo https://raw.githubusercontent.com/khasky/web-reactions-log/main \
-  --ots
+npx web-reactions-verify --api $API --repo $REPO $KEY --ots
 ```
 
 ### From a checkout
@@ -242,17 +241,15 @@ The verifier lives in a separate public repository:
 git clone https://github.com/khasky/web-reactions-verifier
 cd web-reactions-verifier
 pnpm install
-node src/verify.mjs \
-  --api https://api.webreactions.app \
-  --repo https://raw.githubusercontent.com/khasky/web-reactions-log/main
+node src/verify.mjs --api $API --repo $REPO $KEY
 ```
 
-The published public key lives in one authoritative place — pinned in the
+The production public key lives in one authoritative place — pinned in the
 [verifier source](https://github.com/khasky/web-reactions-verifier/blob/main/src/verify.mjs)
 (and printed in that repository's README) — deliberately not restated here, so a
-copy can't silently drift from the one the tool actually checks against. Pass
-`--pubkey <base64>` only when verifying a different deployment or a fork with a
-different signing key.
+copy can't silently drift from the one the tool actually checks against. Any
+other deployment — staging, a fork, a different signing key — is verified by
+passing `--pubkey <base64>`; that is what `KEY` above carries.
 
 With `--target github/1`, expected successful output looks like this. Without
 `--target`, the live `/reactions/count` comparison line is omitted.
@@ -326,10 +323,10 @@ verifiable log events.
 ## Administrators
 
 This repository holds only the published log data and its documentation — no
-scripts or tooling. Operator maintenance (resetting the log to genesis after a
-database reset, scaffolding a fresh empty layout for a new mirror) is performed by
-the backend automation and lands here as normal bot commits, visible in the
-commit history like everything else.
+scripts or tooling. Operator maintenance (resetting the log to genesis,
+scaffolding a fresh empty layout) is performed by the backend automation and
+lands here as normal bot commits, visible in the commit history like everything
+else.
 
 Force-pushing or rewriting history in this repo is itself the tamper signal —
 third-party mirrors (e.g. Software Heritage) preserve the real history.
