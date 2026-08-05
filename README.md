@@ -202,14 +202,14 @@ KEY=              # the production key is pinned in the verifier
 Use the open-source verifier:
 
 ```bash
-npx web-reactions-verify --api $API --repo $REPO $KEY
+npx webemoji-verify --api $API --repo $REPO $KEY
 ```
 
 To also compare one live target's `/reactions/count` response to the recomputed
 fold, add `--target site/id`:
 
 ```bash
-npx web-reactions-verify --api $API --repo $REPO $KEY --target github/1
+npx webemoji-verify --api $API --repo $REPO $KEY --target github/1
 ```
 
 ### Fully offline audit
@@ -220,7 +220,7 @@ under test comes from `checkpoints/latest.json` and every entry from the
 `entries/` shards:
 
 ```bash
-npx web-reactions-verify --entries repo --repo $REPO $KEY
+npx webemoji-verify --entries repo --repo $REPO $KEY
 ```
 
 ### Bitcoin anchor check
@@ -230,7 +230,7 @@ Bitcoin block. It is slower and can only pass after an OTS proof has matured, so
 it is separate from the fast check:
 
 ```bash
-npx web-reactions-verify --api $API --repo $REPO $KEY --ots
+npx webemoji-verify --api $API --repo $REPO $KEY --ots
 ```
 
 ### From a checkout
