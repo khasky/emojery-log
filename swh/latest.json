@@ -1,11 +1,11 @@
 {
   "origin": "https://github.com/khasky/web-reactions-log",
-  "git_commit": "d001ad9df63b6e87837ad7de93de1a1c8e2724be",
-  "swhid": "swh:1:rev:d001ad9df63b6e87837ad7de93de1a1c8e2724be",
-  "revision_url": "https://archive.softwareheritage.org/api/1/revision/d001ad9df63b6e87837ad7de93de1a1c8e2724be/",
-  "save_request_id": 2409081,
+  "git_commit": "4551ff89a451e671bd8bc668ba1375bc1a7bd92a",
+  "swhid": "swh:1:rev:4551ff89a451e671bd8bc668ba1375bc1a7bd92a",
+  "revision_url": "https://archive.softwareheritage.org/api/1/revision/4551ff89a451e671bd8bc668ba1375bc1a7bd92a/",
+  "save_request_id": 2410193,
   "save_request_status": "accepted",
   "save_task_status": "pending",
   "snapshot_swhid": null,
-  "requested_ts": 1785813423225
+  "requested_ts": 1785899849078
 }
