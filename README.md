@@ -1,6 +1,6 @@
-# Web Reactions Log
+# Webemoji Log
 
-Public, append-only transparency log for Web Reactions counters. This repository
+Public, append-only transparency log for Webemoji counters. This repository
 holds the signed checkpoints, Bitcoin timestamps, Sigstore Rekor anchors,
 Software Heritage archival records, signed daily statistics, and the raw log
 entries themselves. Used with the open-source
@@ -16,7 +16,7 @@ If you only want to check the current public log, start with **Verify** below.
 
 ## How verification works
 
-Web Reactions serves raw log entries from the public API (`/log/entries`),
+Webemoji serves raw log entries from the public API (`/log/entries`),
 mirrors them into this repository, and publishes signed tree heads here:
 
 1. Each accepted counter-changing event is serialized as a log leaf.
