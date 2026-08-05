@@ -192,7 +192,7 @@ Set the coordinates of the deployment you are checking — every command below
 reuses them:
 
 ```bash
-API=https://api.webreactions.app
+API=https://api.webemoji.app
 REPO=https://raw.githubusercontent.com/khasky/web-reactions-log/main
 KEY=              # the production key is pinned in the verifier
 ```
