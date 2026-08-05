@@ -9,7 +9,7 @@ was not silently rewritten — a plain `git clone` of this repository is a
 complete, offline-verifiable copy of the log.
 
 This log is paired with the open-source
-[`web-reactions-verifier`](https://github.com/khasky/webemoji-verifier). This
+[`webemoji-verifier`](https://github.com/khasky/webemoji-verifier). This
 repository holds the published data; that repository holds the code that checks it.
 
 If you only want to check the current public log, start with **Verify** below.
@@ -239,7 +239,7 @@ The verifier lives in a separate public repository:
 
 ```
 git clone https://github.com/khasky/webemoji-verifier
-cd web-reactions-verifier
+cd webemoji-verifier
 pnpm install
 node src/verify.mjs --api $API --repo $REPO $KEY
 ```
