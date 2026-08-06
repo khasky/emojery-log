@@ -34,8 +34,8 @@ served counter that does not match the fold of the signed log is detectable.
 
 ## What's here
 
-Everything under `checkpoints/`, `ots/`, `entries/`, `rekor/`, `swh/`, and
-`stats/` is written by the anchoring bot. What each file is for:
+Everything under `checkpoints/`, `ots/`, `entries/`, `rekor/` and `swh/` is
+written by the anchoring bot. What each file is for:
 
 **`checkpoints/` — signed tree heads (STHs)**
 
@@ -123,16 +123,6 @@ and confirm the archive holds this repo's history. The save runs asynchronously,
 so a just-published coordinate resolves once SWH completes the visit — the same
 "pending, then matures" shape as an OTS proof.
 
-**`stats/` — signed daily aggregates**
-
-- `<YYYY-MM-DD>.json` — one signed commitment per UTC day: `votes`,
-  `unique_user_refs`, and `revokes` (all three recomputable from the entries by
-  anyone — the verifier does exactly that), `new_accounts` (an operator
-  commitment not derivable from the log), and, on the day a pseudonym epoch
-  closes, an `epoch_continuity` count. The Ed25519 signature covers a canonical
-  text rendering and uses the same log key as the checkpoints. The day series is
-  gap-free from its first file; the verifier flags holes and stale series.
-
 ## Reading the commit history
 
 Every commit here is made by the anchoring bot. The emoji prefix says which
@@ -162,7 +152,6 @@ The text after the prefix says what it did:
 | `🌱 add entries 741-766` | `entries/<start>-<end>.ndjson` | leaves 741–766 (now covered by a checkpoint) were appended to the raw-entry shard |
 | `⚓ rekor anchor 766` | `rekor/766.json` | checkpoint 766's signed tree head was submitted to Sigstore Rekor; the sidecar records the entry UUID |
 | `📚 swh save a1b2c3d` | `swh/latest.json` | Software Heritage was asked to re-archive the repo; the record pins the archived commit `a1b2c3d` as `swh:1:rev:…` |
-| `🔏 stats 2026-07-18` | `stats/2026-07-18.json` | the signed daily aggregates for that UTC day were published |
 | `🧹 reset to genesis` | every generated file removed | the log was emptied and started over — checkpoints, proofs and entries from before it are gone and `tree_size` restarts at 0. An operator action, not a pipeline stage |
 
 `tree_size` is the cumulative number of log leaves — it only ever grows, except
@@ -185,7 +174,7 @@ proofs instead.
 **Editing this repository.** Docs (`README`, `LICENSE`, anything outside the data
 directories) are safe to edit — the verifier ignores them and the bot never
 touches them. The data directories — `checkpoints/`, `ots/`, `entries/`,
-`rekor/`, `swh/`, and `stats/` — are machine-generated: hand-editing them, force-pushing,
+`rekor/` and `swh/` — are machine-generated: hand-editing them, force-pushing,
 or rewriting history is exactly the tampering the verifier is built to catch (and
 third-party mirrors preserve the real history). Don't edit them by hand.
 
@@ -272,7 +261,6 @@ PASS  archived STH timestamps are monotone in tree_size (0 regression(s))
 PASS  archive never exceeds the live tree (max archived 1128 <= 1128)
 PASS  the live checkpoint is present in the archive shards
 PASS  every archived root replays from today's leaves (45 checkpoint(s), 0 mismatch)
-PASS  signed daily stats match the log (11 day(s), 0 violation(s))
 folded 793 (site,target,reaction) counters from 1128 events
 PASS  live /reactions/count matches the fold for github/1
 revocations: 308 tombstone(s)
@@ -312,7 +300,6 @@ The verifier checks integrity of the public counter history:
 - the root matches the checkpoint published in this repository;
 - every checkpoint ever archived here replays from today's leaves — the whole
   published history lies on one append-only line;
-- the signed daily stats match what the log itself contains for each day;
 - the revocation endpoint matches the actual `op=4` leaves in the log;
 - optional target counts match the fold of the signed log;
 - the checkpoint's Sigstore Rekor entry holds exactly its signed bytes (checked by default; `--no-rekor` to skip);
