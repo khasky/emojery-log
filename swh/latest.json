@@ -1,11 +1,11 @@
 {
   "origin": "https://github.com/khasky/emojery-log",
-  "git_commit": "bce325b47ac9e86c534d930f4dc4f9aa87ce8e2e",
-  "swhid": "swh:1:rev:bce325b47ac9e86c534d930f4dc4f9aa87ce8e2e",
-  "revision_url": "https://archive.softwareheritage.org/api/1/revision/bce325b47ac9e86c534d930f4dc4f9aa87ce8e2e/",
-  "save_request_id": 2540273,
+  "git_commit": "eda73b1e702823e0d507a7db53d2320ad3bf8f1f",
+  "swhid": "swh:1:rev:eda73b1e702823e0d507a7db53d2320ad3bf8f1f",
+  "revision_url": "https://archive.softwareheritage.org/api/1/revision/eda73b1e702823e0d507a7db53d2320ad3bf8f1f/",
+  "save_request_id": 2543454,
   "save_request_status": "accepted",
   "save_task_status": "pending",
   "snapshot_swhid": null,
-  "requested_ts": 1791256645618
+  "requested_ts": 1791343048822
 }
